@@ -1,4 +1,4 @@
-namespace AdmonStore.Api
+namespace AdmonStore.Api2
 {
     public class WeatherForecast
     {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace AdmonStore.Api.Controllers
+namespace AdmonStoreApi2.Controllers
 {
     [ApiController]
     [Route("[controller]")]
