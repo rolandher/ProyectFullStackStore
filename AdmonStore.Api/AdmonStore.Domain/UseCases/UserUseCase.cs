@@ -1,5 +1,6 @@
 ﻿using AdmonStore.Domain.Gateway;
 using AdmonStore.Domain.Gateway.Repositories;
+using AdmonStoreDomain.Entities.Commands;
 using AdmonStoreDomain.Entities.Entities;
 using AdmonStoreDomain.Entities.Query;
 using System;
@@ -18,16 +19,21 @@ namespace AdmonStore.Domain.UseCases
         {
             _userRepository = userRepository;
         }
-
-        public async Task<List<GetUser>> GetListUsers()
+        public async Task<List<User>> GetUsers()
         {
-            return await _userRepository.GetListUsers();
-        }
-
-        public async Task<User> AddUser(User user)
+            return await _userRepository.GetUsers();
+        }       
+        public async Task<NewUser> CreateUser(User user)
         {
-            return await _userRepository.AddUser(user);
+            return await _userRepository.CreateUser(user);            
         }
-
+        public async Task<User> UpdateUser(User user)
+        {
+            return await _userRepository.UpdateUser(user);
+        }
+        public async Task<string> DeleteUser(string id)
+        {
+            return await _userRepository.DeleteUser(id);
+        }
     }
 }

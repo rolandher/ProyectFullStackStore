@@ -11,14 +11,12 @@ namespace AdmonStore.Infrastructure.Entities
     {
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]//CAMELCASE 
-        public string User_Id { get; set; }
-
-        public string Fire_Id { get; set; }
+        public string User_Id { get; set; }        
         public string Names { get; set; }
         public string SurNames { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string Gender { get; set; }
-        public string Role { get; set; }
+        public string Gender { get; set; }          
+        public bool State { get; set; }
     }
 }

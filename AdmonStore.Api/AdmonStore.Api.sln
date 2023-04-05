@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreTest2", "AdmonSto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdmonStore.Api2", "AdmonStore.Api2\AdmonStore.Api2.csproj", "{506ECBC8-8C21-4DA6-B479-C7F629BE9343}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmonStore.Domain2", "AdmonStore.Domain2\AdmonStore.Domain2.csproj", "{4B0CDCD6-F4AE-491B-96E7-C081C8676555}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{506ECBC8-8C21-4DA6-B479-C7F629BE9343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{506ECBC8-8C21-4DA6-B479-C7F629BE9343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{506ECBC8-8C21-4DA6-B479-C7F629BE9343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B0CDCD6-F4AE-491B-96E7-C081C8676555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B0CDCD6-F4AE-491B-96E7-C081C8676555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B0CDCD6-F4AE-491B-96E7-C081C8676555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B0CDCD6-F4AE-491B-96E7-C081C8676555}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{E091C24E-FA08-431A-BB64-DBACF58380E6} = {8E01200D-2D2E-4672-8EF6-227429107F07}
 		{457ED517-6671-4C1A-9110-391A32BB9109} = {8E01200D-2D2E-4672-8EF6-227429107F07}
 		{506ECBC8-8C21-4DA6-B479-C7F629BE9343} = {D2345135-24B5-4F84-8D88-9E5AA56B080B}
+		{4B0CDCD6-F4AE-491B-96E7-C081C8676555} = {724AF867-785E-4F07-BC67-D947D424899B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FAF6AD37-65A9-475C-8860-996FEA5E900B}

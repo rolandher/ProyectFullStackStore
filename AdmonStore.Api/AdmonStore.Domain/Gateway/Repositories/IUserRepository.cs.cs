@@ -1,4 +1,5 @@
-﻿using AdmonStoreDomain.Entities.Entities;
+﻿using AdmonStoreDomain.Entities.Commands;
+using AdmonStoreDomain.Entities.Entities;
 using AdmonStoreDomain.Entities.Query;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,9 @@ namespace AdmonStore.Domain.Gateway.Repositories
 {
     public interface IUserRepository
     {
-        Task<List<GetUser>> GetListUsers();
-        Task<User> AddUser(User user);
+        Task<NewUser> CreateUser(User user);        
+        Task<List<User>> GetUsers();
+        Task<User> UpdateUser(User user);
+        Task<string> DeleteUser(string id);
     }
 }

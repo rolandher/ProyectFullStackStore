@@ -1,6 +1,7 @@
 ﻿using AdmonStore.Domain.Gateway.Repositories;
 using AdmonStore.Infrastructure.Entities;
 using AdmonStore.Infrastructure.Interfaces;
+using AdmonStoreDomain.Entities.Commands;
 using AdmonStoreDomain.Entities.Entities;
 using AdmonStoreDomain.Entities.Query;
 using AutoMapper;
@@ -14,30 +15,64 @@ using System.Threading.Tasks;
 namespace AdmonStore.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
+    {
+        private readonly IMongoCollection<UserEntity> userCollection;
+        private readonly IMapper _mapper;
+
+        public UserRepository(IContext context, IMapper mapper)
         {
-            private readonly IMongoCollection<UserEntity> userCollection;
-            private readonly IMapper _mapper;
+            userCollection = context.Users;
+            _mapper = mapper;
+        }
 
-            public UserRepository(IContext context, IMapper mapper)
+        public async Task<NewUser> CreateUser(User user)
+        {
+            var userToCreate = _mapper.Map<UserEntity>(user);
+            await userCollection.InsertOneAsync(userToCreate);
+            return _mapper.Map<NewUser>(user);
+        }
+
+        public async Task<List<User>> GetUsers()
+        {
+            var users = await userCollection.FindAsync(userEntity => true && userEntity.State == true);
+            var usersList = _mapper.Map<List<User>>(users.ToList());
+            if (usersList.Count == 0)
             {
-                userCollection = context.Users;
-                _mapper = mapper;
+                throw new ArgumentException("There aren't shops to show.");
             }
+            return usersList;
+        }
 
-            public async Task<List<GetUser>> GetListUsers()
+        public async Task<User> UpdateUser(User user)
+        {
+            var userToUpdate = _mapper.Map<UserEntity>(user);
+            var userUpdated = await userCollection.FindOneAndReplaceAsync(userpEntity => userpEntity.User_Id == user.User_Id
+                    && userpEntity.State == true, userToUpdate);
+
+            return userUpdated == null
+                ? throw new ArgumentException($"There isn't a user with this ID: {user.User_Id}.")
+                : _mapper.Map<User>(userToUpdate);
+        }
+
+        public async Task<string> DeleteUser(string id)
+        {
+            var users = await GetUsers();
+            var userToDelete = users.FirstOrDefault(usersList => usersList.User_Id == id);
+            if (userToDelete != null)
             {
-                var users = await userCollection.Find(user => true).ToListAsync();
-                return _mapper.Map<List<GetUser>>(users);
+                userToDelete.State = false;
+                await UpdateUser(userToDelete);
             }
-
-            public async Task<User> AddUser(User user)
+            else
             {
-                var userEntity = _mapper.Map<UserEntity>(user);
-                await userCollection.InsertOneAsync(userEntity);
-                return _mapper.Map<User>(userEntity);
+                throw new ArgumentException($"There isn't a user with this ID: {id}.");
             }
+            return $"Delete Successful for ID: {id}";
+        }
 
-    }      
+    }             
+
+}      
 
     
-}
+

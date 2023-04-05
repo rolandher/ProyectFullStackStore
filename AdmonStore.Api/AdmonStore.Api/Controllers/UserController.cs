@@ -24,15 +24,27 @@ namespace AdmonStore.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<List<GetUser>> Get_List_User()
+        public async Task<List<User>> GetUserAsync()
         {
-            return await _userUseCase.GetListUsers();
+            return await _userUseCase.GetUsers();
         }
 
         [HttpPost]
-        public async Task<User> Create_User([FromBody] NewUser command)
+        public async Task<NewUser> CreateUserAsync([FromBody] NewUser newUser)
         {
-            return await _userUseCase.AddUser(_mapper.Map<User>(command));
+            return await _userUseCase.CreateUser(_mapper.Map<User>(newUser));
+        }
+
+        [HttpPut]
+        public async Task<User> UpdateUserAsync([FromBody] User user)
+        {
+            return await _userUseCase.UpdateUser(user);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<string> DeleteUserAsync(string id)
+        {
+            return await _userUseCase.DeleteUser(id);
         }
     }
 }
