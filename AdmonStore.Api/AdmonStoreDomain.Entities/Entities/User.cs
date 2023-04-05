@@ -9,7 +9,8 @@ namespace AdmonStoreDomain.Entities.Entities
 {
     public class User
     {
-        public string User_Id { get; set; }   
+        public string User_Id { get; set; }
+        public string Firebase_Id { get; set; }
         public string Names { get; set; }        
         public string SurNames { get; set; }        
         public string Email { get; set; }        

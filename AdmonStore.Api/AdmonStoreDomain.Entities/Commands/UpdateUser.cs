@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace AdmonStoreDomain.Entities.Commands
 {
     public class UpdateUser
-    {       
+    {
+        [Required(ErrorMessage = "Names is required")]
+        public string Firebase_Id { get; set; }
         [Required(ErrorMessage = "Names is required")]
         public string Names { get; set; }
         [Required(ErrorMessage = "Surnames is required")]
