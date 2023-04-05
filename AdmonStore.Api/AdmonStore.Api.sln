@@ -3,29 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmonStore.Api", "AdmonStore.Api\AdmonStore.Api.csproj", "{2BAA0829-317C-4F77-8BEF-29CEC1924BB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdmonStore.Api", "AdmonStore.Api\AdmonStore.Api.csproj", "{2BAA0829-317C-4F77-8BEF-29CEC1924BB5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreApi", "AdmonStoreApi", "{A557DEB4-DF4A-4635-ADE8-1EA8A5099314}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreDomain", "AdmonStoreDomain", "{01F07A46-69F6-4A56-A992-4A4029C01BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmonStore.Domain", "AdmonStore.Domain\AdmonStore.Domain.csproj", "{86F9B2FD-DF7F-4CE2-9695-1878579FD998}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdmonStore.Domain", "AdmonStore.Domain\AdmonStore.Domain.csproj", "{86F9B2FD-DF7F-4CE2-9695-1878579FD998}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreDomainEntities", "AdmonStoreDomainEntities", "{3B6AB2D4-A0BD-448C-88FE-0D6980B3FB1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmonStoreDomain.Entities", "AdmonStoreDomain.Entities\AdmonStoreDomain.Entities.csproj", "{B72746BD-E3E0-46CA-A4B9-B607E09B2155}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdmonStoreDomain.Entities", "AdmonStoreDomain.Entities\AdmonStoreDomain.Entities.csproj", "{B72746BD-E3E0-46CA-A4B9-B607E09B2155}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreInfrastructure", "AdmonStoreInfrastructure", "{ABF1FEBD-DD8C-4892-AED5-4AF2B014A16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmonStore.Infrastructure", "AdmonStore.Infrastructure\AdmonStore.Infrastructure.csproj", "{2338DBEE-86CA-4800-A550-C3FF589663D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdmonStore.Infrastructure", "AdmonStore.Infrastructure\AdmonStore.Infrastructure.csproj", "{2338DBEE-86CA-4800-A550-C3FF589663D9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreTest", "AdmonStoreTest", "{DFF73928-3B39-4536-884B-2AE5572C4BA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmonStore.Test", "AdmonStore.Test\AdmonStore.Test.csproj", "{7F75072F-9EBA-4ACD-903D-6B53A4D0FB59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdmonStore.Test", "AdmonStore.Test\AdmonStore.Test.csproj", "{7F75072F-9EBA-4ACD-903D-6B53A4D0FB59}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservicio1", "Microservicio1", "{89C7EFA6-A4B1-4623-A542-9452CE3DE235}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserMicroserviceMongo", "UserMicroserviceMongo", "{89C7EFA6-A4B1-4623-A542-9452CE3DE235}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservicio2", "Microservicio2", "{8E01200D-2D2E-4672-8EF6-227429107F07}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoreMicroserviceSql", "StoreMicroserviceSql", "{8E01200D-2D2E-4672-8EF6-227429107F07}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreApi2", "AdmonStoreApi2", "{D2345135-24B5-4F84-8D88-9E5AA56B080B}"
 EndProject
@@ -33,11 +33,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreDomain2", "AdmonS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreDOmainEntities2", "AdmonStoreDOmainEntities2", "{98EBF589-1DE3-48F0-91E6-64911B65D37C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreInfrastructure", "AdmonStoreInfrastructure", "{E091C24E-FA08-431A-BB64-DBACF58380E6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreInfrastructure2", "AdmonStoreInfrastructure2", "{E091C24E-FA08-431A-BB64-DBACF58380E6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreTest", "AdmonStoreTest", "{457ED517-6671-4C1A-9110-391A32BB9109}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdmonStoreTest2", "AdmonStoreTest2", "{457ED517-6671-4C1A-9110-391A32BB9109}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmonStore.Api2", "AdmonStore.Api2\AdmonStore.Api2.csproj", "{506ECBC8-8C21-4DA6-B479-C7F629BE9343}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdmonStore.Api2", "AdmonStore.Api2\AdmonStore.Api2.csproj", "{506ECBC8-8C21-4DA6-B479-C7F629BE9343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

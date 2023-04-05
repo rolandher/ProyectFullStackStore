@@ -1,4 +1,9 @@
-﻿using AutoMapper;
+﻿using AdmonStore.Domain.Gateway;
+using AdmonStoreDomain.Entities.Commands;
+using AdmonStoreDomain.Entities.Entities;
+using AdmonStoreDomain.Entities.Query;
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdmonStore.Api.Controllers
@@ -12,9 +17,22 @@ namespace AdmonStore.Api.Controllers
         private readonly IMapper _mapper;
 
 
-        public CustomerController(ICustomerUseCase customerUseCase, IMapper mapper)
+        public UserController(IUserUseCase userUseCase, IMapper mapper)
         {
-            _customerUseCase = customerUseCase;
+            _userUseCase = userUseCase;
             _mapper = mapper;
         }
+
+        [HttpGet]
+        public async Task<List<GetUser>> Get_List_User()
+        {
+            return await _userUseCase.GetListUsers();
+        }
+
+        [HttpPost]
+        public async Task<User> Create_User([FromBody] NewUser command)
+        {
+            return await _userUseCase.AddUser(_mapper.Map<User>(command));
+        }
     }
+}
