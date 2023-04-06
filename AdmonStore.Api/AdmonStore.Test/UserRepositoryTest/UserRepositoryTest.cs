@@ -133,22 +133,20 @@ namespace AdmonStore.Test.UserRepositoryTest
         [Fact]
         public async Task DeleteUser()
         {
-        //    //arrange
-        //    var userToDelete = new User
-        //    {
-        //        User_Id = "test-user-123",
-        //        State = true
-        //    };
+            //arrange
+            var userToDelete = new User
+            {
+                User_Id = "test-user-123",
+                State = true
+            };           
 
-        //    var 
+            _mockUserRepository.Setup(x => x.DeleteUser("test-user-123")).ReturnsAsync("Delete Successful for ID: test-user-123");
 
-        //    _mockUserRepository.Setup(x => x.DeleteUser(userToDelete)).ReturnsAsync(userUpdated);
+            // act
+            var result = await _mockUserRepository.Object.DeleteUser("test-user-123");
 
-        //    // act
-        //    var result = await _mockUserRepository.Object.DeleteUser(userToDelete.User_Id);
-
-        //    // assert
-        //    Assert.Equal($"Delete Successful for ID: {userToDelete.User_Id}", result);
+            // assert
+            Assert.Equal($"Delete Successful for ID: {userToDelete.User_Id}", result);
         }
 
 

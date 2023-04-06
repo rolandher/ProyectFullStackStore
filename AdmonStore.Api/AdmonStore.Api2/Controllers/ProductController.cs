@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AdmonStore.Api2.Controllers
 {
-    public class ProductController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductController : ControllerBase
     {
-        public IActionResult Index()
+
+        private readonly IProductUseCase _productUseCase;
+        private readonly IMapper _mapper;
+
+
+        public ProductController(IProductUseCase productUseCase, IMapper mapper)
         {
-            return View();
+            _productUseCase = productUseCase;
+            _mapper = mapper;
         }
     }
 }
