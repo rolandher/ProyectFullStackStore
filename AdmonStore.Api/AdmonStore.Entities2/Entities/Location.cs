@@ -10,7 +10,7 @@ namespace AdmonStore.Entities2.Entities
     {
         public int Location_Id { get; set; }
         public int Id_Store { get; set; }
-        public string Names { get; set; }
+        public string Names { get; set; } //estante 1, pasillo 2
         public string Description { get; set; }
         public string Location_Type { get; set; } //estante", "pasillo", "sección
     }

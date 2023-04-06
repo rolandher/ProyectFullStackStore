@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace AdmonStore.Entities2.Commands
 {
-    public class NewInventory
+    public class NewStore
     {
+        public string Id_User { get; set; }
         public string Names { get; set; }
-        public List<Product> Products { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using AdmonStore.Entities2.Commands;
+using AdmonStore.Entities2.Entities;
+using AutoMapper;
 
 namespace AdmonStore.Api2.AutoMapper
 {
@@ -6,8 +8,7 @@ namespace AdmonStore.Api2.AutoMapper
     {
         public ConfigurationProfile()
         {
-            CreateMap<NewProduct, Product>().ReverseMap();
-            CreateMap<ProductEntity, Product>().ReverseMap();
+            CreateMap<NewStore, Store>().ReverseMap();           
         }
     }
 }

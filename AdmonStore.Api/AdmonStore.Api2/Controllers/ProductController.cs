@@ -8,14 +8,14 @@ namespace AdmonStore.Api2.Controllers
     public class ProductController : ControllerBase
     {
 
-        private readonly IProductUseCase _productUseCase;
-        private readonly IMapper _mapper;
+        //private readonly IProductUseCase _productUseCase;
+        //private readonly IMapper _mapper;
 
 
-        public ProductController(IProductUseCase productUseCase, IMapper mapper)
-        {
-            _productUseCase = productUseCase;
-            _mapper = mapper;
-        }
+        //public ProductController(IProductUseCase productUseCase, IMapper mapper)
+        //{
+        //    _productUseCase = productUseCase;
+        //    _mapper = mapper;
+        //}
     }
 }
