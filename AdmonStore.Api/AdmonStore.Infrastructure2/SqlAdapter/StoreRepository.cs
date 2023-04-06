@@ -26,9 +26,9 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
             {
                 Id_User = store.Id_User,
                 Names = store.Names,
-                Description = store.Description               
+                Description = store.Description
 
-            };           
+            };
 
             string sqlQuery = $"INSERT INTO {_tableName} (Id_User, Names, Description) VALUES (@Id_User, @Names, @Description )";
             var result = await connection.ExecuteAsync(sqlQuery, createStore);
@@ -42,7 +42,7 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             string sqlQuery = $"SELECT * FROM {_tableName}";
             var result = await connection.QueryAsync<Store>(sqlQuery);
-            
+
             connection.Close();
             return result.ToList();
 

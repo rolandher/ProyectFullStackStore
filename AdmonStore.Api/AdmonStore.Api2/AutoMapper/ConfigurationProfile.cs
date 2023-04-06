@@ -8,7 +8,8 @@ namespace AdmonStore.Api2.AutoMapper
     {
         public ConfigurationProfile()
         {
-            CreateMap<NewStore, Store>().ReverseMap();           
+            CreateMap<NewStore, Store>().ReverseMap();
+            CreateMap<NewLocation, Location>().ReverseMap();
         }
     }
 }
