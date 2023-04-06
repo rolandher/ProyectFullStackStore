@@ -13,4 +13,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AdmonStore.Domain2\AdmonStore.Domain2.csproj" />
+    <ProjectReference Include="..\AdmonStore.Entities2\AdmonStore.Entities2.csproj" />
+    <ProjectReference Include="..\AdmonStore.Infrastructure2\AdmonStore.Infrastructure2.csproj" />
+  </ItemGroup>
+
 </Project>
