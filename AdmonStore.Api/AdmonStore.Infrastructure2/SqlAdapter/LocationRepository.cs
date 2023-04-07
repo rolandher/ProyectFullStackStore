@@ -54,6 +54,15 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
             return location.ToList();
 
         }
+
+        public async Task<Location> GetLocationByIdAsync(int id)
+        {
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            string sqlQuery = $"SELECT * FROM {_tableName} WHERE Id = @Id";
+            var location = await connection.QueryFirstOrDefaultAsync<Location>(sqlQuery, new { Id = id });
+            connection.Close();
+            return location;
+        }
     
 
     }

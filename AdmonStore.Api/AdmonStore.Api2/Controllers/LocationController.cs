@@ -22,7 +22,7 @@ namespace AdmonStore.Api2.Controllers
         }
 
         [HttpPost]
-        public async Task<NewLocation> CreateStoreAsync([FromBody] NewLocation newLocation)
+        public async Task<NewLocation> CreateLocationAsync([FromBody] NewLocation newLocation)
         {
             return await _locationUseCase.CreateLocationAsync(_mapper.Map<Location>(newLocation));
         }
@@ -32,6 +32,14 @@ namespace AdmonStore.Api2.Controllers
         {
             return await _locationUseCase.GetLocationAsync();
         }
+
+        [HttpGet]
+        [Route("GetLocationById")]
+        public async Task<Location> GetLocationByIdAsync(int id)
+        {
+            return await _locationUseCase.GetLocationByIdAsync(id);
+        }        
+
 
     }
 }

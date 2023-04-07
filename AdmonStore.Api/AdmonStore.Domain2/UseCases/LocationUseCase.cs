@@ -27,5 +27,10 @@ namespace AdmonStore.Domain2.UseCases
         {
             return await _locationRepository.GetLocationAsync();
         }
+
+        public async Task<Location> GetLocationByIdAsync(int id)
+        {
+            return await _locationRepository.GetLocationByIdAsync(id);
+        }
     }
 }

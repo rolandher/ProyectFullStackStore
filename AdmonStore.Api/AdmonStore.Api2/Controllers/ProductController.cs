@@ -33,5 +33,12 @@ namespace AdmonStore.Api2.Controllers
             return await _productUseCase.GetProductAsync();
         }
 
+        [HttpGet]
+        [Route("GetProductById")]
+        public async Task<Product> GetProductByIdAsync(int id)
+        {
+            return await _productUseCase.GetProductByIdAsync(id);
+        }
+
     }
 }

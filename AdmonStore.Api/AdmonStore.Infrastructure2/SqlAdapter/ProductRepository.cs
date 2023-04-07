@@ -73,5 +73,15 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
             return products.ToList();
 
         }
+
+        public async Task<Product> GetProductByIdAsync(int id)
+        {
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            string sqlQuery = $"SELECT * FROM {_tableName} WHERE Product_Id = @id";
+            var product = await connection.QueryFirstOrDefaultAsync<Product>(sqlQuery, new { id = id });
+
+            connection.Close();
+            return product;
+        }
     }
 }

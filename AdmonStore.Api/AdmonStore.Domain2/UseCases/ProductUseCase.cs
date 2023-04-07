@@ -26,5 +26,10 @@ namespace AdmonStore.Domain2.UseCases
         {
             return await _productRepository.GetProductAsync();
         }
+
+        public async Task<Product> GetProductByIdAsync(int id)
+        {
+            return await _productRepository.GetProductByIdAsync(id);
+        }
     }
 }

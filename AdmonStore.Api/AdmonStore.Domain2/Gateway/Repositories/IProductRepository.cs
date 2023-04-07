@@ -12,5 +12,7 @@ namespace AdmonStore.Domain2.Gateway.Repositories
     {
         Task<NewProduct> CreateProductAsync(Product product);
         Task<List<Product>> GetProductAsync();
+
+        Task<Product> GetProductByIdAsync(int id);
     }
 }

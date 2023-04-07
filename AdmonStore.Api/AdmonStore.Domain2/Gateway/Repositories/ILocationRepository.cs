@@ -12,5 +12,7 @@ namespace AdmonStore.Domain2.Gateway.Repositories
     {
         Task<NewLocation> CreateLocationAsync(Location location);
         Task<List<Location>> GetLocationAsync();
+
+        Task<Location> GetLocationByIdAsync(int id);
     }
 }
