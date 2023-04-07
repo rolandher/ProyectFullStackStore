@@ -10,6 +10,7 @@ namespace AdmonStore.Api2.AutoMapper
         {
             CreateMap<NewStore, Store>().ReverseMap();
             CreateMap<NewLocation, Location>().ReverseMap();
+            CreateMap<NewProduct, Product>().ReverseMap();
         }
     }
 }

@@ -23,6 +23,9 @@ builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 builder.Services.AddScoped<ILocationUseCase, LocationUseCase>();
 builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 
+builder.Services.AddScoped<IProductUseCase, ProductUseCase>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
 
 builder.Services.AddTransient<IDbConnectionBuilder>(e =>
 {

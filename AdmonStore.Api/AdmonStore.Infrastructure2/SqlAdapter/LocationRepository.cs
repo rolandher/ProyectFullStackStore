@@ -27,7 +27,7 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
         public async Task<NewLocation> CreateLocationAsync(Location location)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            var createLocation = new Location
+            var locationToCreate = new Location
             {
                 Id_Store = location.Id_Store,
                 Names = location.Names,
@@ -35,11 +35,12 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
                 Location_Type = location.Location_Type
 
             };
+            Location.Validate(locationToCreate);
 
             string sqlQuery = $"INSERT INTO {_tableName} (Id_Store, Names, Description, Location_Type) VALUES (@Id_Store, @Names, @Description, @Location_Type)";
-            var result = await connection.ExecuteAsync(sqlQuery, createLocation);
+            var result = await connection.ExecuteAsync(sqlQuery, locationToCreate);
             connection.Close();
-            return _mapper.Map<NewLocation>(createLocation);
+            return _mapper.Map<NewLocation>(locationToCreate);
 
         }
 
@@ -47,10 +48,10 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             string sqlQuery = $"SELECT * FROM {_tableName}";
-            var result = await connection.QueryAsync<Location>(sqlQuery);
+            var location = await connection.QueryAsync<Location>(sqlQuery);
 
             connection.Close();
-            return result.ToList();
+            return location.ToList();
 
         }
     

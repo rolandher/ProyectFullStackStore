@@ -22,7 +22,7 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
         public async Task<NewStore> CreateStoreAsync(Store store)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            var createStore = new Store
+            var storeToCreate = new Store
             {
                 Id_User = store.Id_User,
                 Names = store.Names,
@@ -30,10 +30,12 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
 
             };
 
+            Store.Validate(storeToCreate);
+
             string sqlQuery = $"INSERT INTO {_tableName} (Id_User, Names, Description) VALUES (@Id_User, @Names, @Description )";
-            var result = await connection.ExecuteAsync(sqlQuery, createStore);
+            var result = await connection.ExecuteAsync(sqlQuery, storeToCreate);
             connection.Close();
-            return _mapper.Map<NewStore>(createStore);
+            return _mapper.Map<NewStore>(storeToCreate);
 
         }
 
@@ -41,10 +43,10 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
             string sqlQuery = $"SELECT * FROM {_tableName}";
-            var result = await connection.QueryAsync<Store>(sqlQuery);
+            var stores = await connection.QueryAsync<Store>(sqlQuery);
 
             connection.Close();
-            return result.ToList();
+            return stores.ToList();
 
         }
     }
