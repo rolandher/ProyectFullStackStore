@@ -40,5 +40,11 @@ namespace AdmonStore.Api2.Controllers
             return await _productUseCase.GetProductByIdAsync(id);
         }
 
+        [HttpPut]
+        public async Task<Product> InStockProductAsync(StockProduct stockProduct)
+        {
+            return await _productUseCase.UpdateStockProductAsync(_mapper.Map<Product>(stockProduct));
+        }
+
     }
 }

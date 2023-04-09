@@ -82,6 +82,50 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
 
             connection.Close();
             return product;
+            
         }
+
+        public async Task<Product> UpdateStockProductAsync(Product product)
+        {
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+
+            var productStockUpdate = await GetProductByIdAsync(product.Product_Id);
+            
+            switch (productStockUpdate.State)
+
+            {
+                case "available":
+                    productStockUpdate.Stock += product.Stock;
+                    break;
+
+                    case "unavailable":
+                    productStockUpdate.Stock -= product.Stock;
+                    break;                              
+
+            }            
+
+            string sqlQuery = $"UPDATE {_tableName} SET Stock = @Stock, DepartureDate = @DepartureDate WHERE Product_Id = @Product_Id";
+
+            var result = await connection.ExecuteAsync(sqlQuery, productStockUpdate);
+
+            connection.Close();
+            return _mapper.Map<Product>(productStockUpdate);
+
+
+        }
+
+
+        //var productToUpdate = new Product
+        //{
+        //    Product_Id = product.Product_Id,
+        //    Id_Store = product.Id_Store,
+        //    Names = product.Names,
+        //    Description = product.Description,
+        //    Stock = product.Stock,
+        //    Price = product.Price,
+        //    AdmissionDate = DateTime.Now,
+        //    DepartureDate = null,
+        //    State = product.State
+        //};
     }
 }

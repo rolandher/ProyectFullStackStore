@@ -58,12 +58,12 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
         public async Task<Location> GetLocationByIdAsync(int id)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-            string sqlQuery = $"SELECT * FROM {_tableName} WHERE Id = @Id";
-            var location = await connection.QueryFirstOrDefaultAsync<Location>(sqlQuery, new { Id = id });
+            string sqlQuery = $"SELECT * FROM {_tableName} WHERE Location_Id = @Location_Id";
+            var location = await connection.QueryFirstOrDefaultAsync<Location>(sqlQuery, new { Location_Id = id });
+
             connection.Close();
             return location;
-        }
-    
 
+        }
     }
 }
