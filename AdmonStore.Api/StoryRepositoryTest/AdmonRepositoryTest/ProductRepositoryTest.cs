@@ -31,7 +31,7 @@ namespace StoryRepositoryTest.AdmonRepositoryTest
                 Price = 1000,
                 AdmissionDate = DateTime.Now,
                 DepartureDate = null,
-                State = "Activo"
+                State = true
             };
             var productList = new List<Product> { product };
             _mockProductRepository.Setup(x => x.GetProductAsync()).ReturnsAsync(productList);
@@ -57,7 +57,7 @@ namespace StoryRepositoryTest.AdmonRepositoryTest
                 Price = 1000,
                 AdmissionDate = DateTime.Now,
                 DepartureDate = null,
-                State = "Activo"
+                State = true
             };
             var productCreated = new NewProduct
             {
@@ -68,7 +68,7 @@ namespace StoryRepositoryTest.AdmonRepositoryTest
                 Price = 1000,
                 AdmissionDate = DateTime.Now,
                 DepartureDate = null,
-                State = "Activo"
+                State = true
             };
             _mockProductRepository.Setup(x => x.CreateProductAsync(newProduct)).ReturnsAsync(productCreated);
 
@@ -94,7 +94,7 @@ namespace StoryRepositoryTest.AdmonRepositoryTest
                 Price = 1000,
                 AdmissionDate = DateTime.Now,
                 DepartureDate = null,
-                State = "Activo"
+                State = true
             };
             var productId = new Product();
             _mockProductRepository.Setup(x => x.GetProductByIdAsync(1)).ReturnsAsync(productId);
@@ -106,5 +106,102 @@ namespace StoryRepositoryTest.AdmonRepositoryTest
             Assert.NotNull(result);
             Assert.Equal(productId, result);
         }
+
+        [Fact]
+
+        public async Task UpdateStateAsync()
+        {
+            //Arrange
+            var stateToUpdated = new UpdateState
+            {
+                Product_Id = 1,
+                State = true
+            };
+            var stateUpdated = new Product
+            {
+                Id_Store = 1,
+                Names = "Leche",
+                Description = "Lacteos",
+                Stock = 10,
+                Price = 1000,
+                AdmissionDate = DateTime.Now,
+                DepartureDate = null,
+                State = true
+
+            };
+            _mockProductRepository.Setup(x => x.UpdateStateAsync(stateToUpdated)).ReturnsAsync(stateUpdated);
+
+            //Act
+
+            var result = await _mockProductRepository.Object.UpdateStateAsync(stateToUpdated);
+
+            //Assert
+
+            Assert.NotNull(result);
+            Assert.Equal(stateUpdated, result);
+        }
+
+        [Fact]
+
+        public async Task AgregateStockProductAsync()
+        {
+            //Arrange
+            var StockToAdd = new StockProduct
+            {
+                Product_Id = 1,
+                Stock = 10
+            };
+            var stockUpdated = new Product
+            {
+                Id_Store = 1,
+                Names = "Leche",
+                Description = "Lacteos",
+                Stock = 10,
+                Price = 1000,
+                AdmissionDate = DateTime.Now,
+                DepartureDate = null,
+                State = true
+            };           
+            _mockProductRepository.Setup(x => x.AgregateStockProductAsync(StockToAdd)).ReturnsAsync(stockUpdated);
+
+            //Act
+            var result = await _mockProductRepository.Object.AgregateStockProductAsync(StockToAdd);
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.Equal(stockUpdated, result);
+        }
+
+        [Fact]
+
+        public async Task SubstractStockProductAsync()
+        {
+            //Arrange
+            var StockToSubstract = new StockProduct
+            {
+                Product_Id = 1,
+                Stock = 10
+            };
+            var stockUpdated = new Product
+            {
+                Id_Store = 1,
+                Names = "Leche",
+                Description = "Lacteos",
+                Stock = 10,
+                Price = 1000,
+                AdmissionDate = DateTime.Now,
+                DepartureDate = null,
+                State = true
+            };
+            _mockProductRepository.Setup(x => x.SubtractStockProductAsync(StockToSubstract)).ReturnsAsync(stockUpdated);
+
+            //Act
+            var result = await _mockProductRepository.Object.SubtractStockProductAsync(StockToSubstract);
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.Equal(stockUpdated, result);
+        }
+           
     }
 }
