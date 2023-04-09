@@ -41,10 +41,30 @@ namespace AdmonStore.Api2.Controllers
         }
 
         [HttpPut]
-        public async Task<Product> InStockProductAsync(StockProduct stockProduct)
+        [Route("UpdateState")]
+        public async Task<Product> UpdateStateAsync(UpdateState updateState)
         {
-            return await _productUseCase.UpdateStockProductAsync(_mapper.Map<Product>(stockProduct));
+            return await _productUseCase.UpdateStateAsync(updateState);
         }
+
+
+        [HttpPut]
+        [Route("AddStock")]
+        public async Task<Product> AgregateStockProductAsync(StockProduct stockProduct )
+        {
+            return await _productUseCase.AgregateStockProductAsync(stockProduct);
+        }
+
+        [HttpPut]
+        [Route("SubtractStock")]
+        public async Task<Product> SubtractStockProductAsync(StockProduct stockProduct)
+        {
+            return await _productUseCase.SubtractStockProductAsync(stockProduct);
+        }
+
+
+
+
 
     }
 }

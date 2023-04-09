@@ -16,7 +16,7 @@ namespace AdmonStore.Entities2.Entities
         public decimal Price { get; set; }
         public DateTime AdmissionDate { get; set; }
         public DateTime? DepartureDate { get; set; }
-        public string State { get; set; }
+        public bool State { get; set; }
 
         public Product() { }
 
@@ -51,11 +51,10 @@ namespace AdmonStore.Entities2.Entities
             {
                 throw new Exception("The admission date is required.");
             }
-
-            if (string.IsNullOrEmpty(product.State))
+            if (product.State == null)
             {
                 throw new Exception("The state is required.");
-            }
+            }            
 
         }
 

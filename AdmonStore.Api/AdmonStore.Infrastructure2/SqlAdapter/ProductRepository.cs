@@ -6,6 +6,7 @@ using AutoMapper;
 using Dapper;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data.Common;
 using System.Linq;
 using System.Security.Principal;
@@ -19,7 +20,7 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
     {
         private readonly IDbConnectionBuilder _dbConnectionBuilder;
         private readonly IMapper _mapper;
-        private readonly string _tableName = "Produts";        
+        private readonly string _tableName = "Products";        
 
         public ProductRepository(IDbConnectionBuilder dbConnectionBuilder, IMapper mapper)
         {
@@ -30,16 +31,6 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
         public async Task<NewProduct> CreateProductAsync(Product product)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-
-            //verify that the store exists and it balance
-            //var storeSql = $"SELECT COUNT(*) FROM Stores WHERE Store_Id = @idStore;";
-            //var storeCount = await connection.ExecuteScalarAsync<int>(storeSql, new { idStore = product.Id_Store });
-
-            //if (storeCount == 0)
-            //{
-            //    throw new Exception("The store doesn't exist.");
-            //}
-
             var producToCreate = new Product
             {
                 Id_Store = product.Id_Store,
@@ -49,7 +40,7 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
                 Price = product.Price,
                 AdmissionDate = DateTime.Now,
                 DepartureDate = null,
-                State = product.State
+                State = true
             };
 
             Product.Validate(producToCreate);
@@ -85,24 +76,11 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
             
         }
 
-        public async Task<Product> UpdateStockProductAsync(Product product)
+        public async Task<Product> AgregateStockProductAsync(StockProduct stockProduct)
         {
             var connection = await _dbConnectionBuilder.CreateConnectionAsync();
-
-            var productStockUpdate = await GetProductByIdAsync(product.Product_Id);
-            
-            switch (productStockUpdate.State)
-
-            {
-                case "available":
-                    productStockUpdate.Stock += product.Stock;
-                    break;
-
-                    case "unavailable":
-                    productStockUpdate.Stock -= product.Stock;
-                    break;                              
-
-            }            
+            var productStockUpdate = await GetProductByIdAsync(stockProduct.Product_Id);
+            productStockUpdate.Stock += stockProduct.Stock;                    
 
             string sqlQuery = $"UPDATE {_tableName} SET Stock = @Stock, DepartureDate = @DepartureDate WHERE Product_Id = @Product_Id";
 
@@ -114,18 +92,50 @@ namespace AdmonStore.Infrastructure2.SqlAdapter
 
         }
 
+        public async Task<Product> SubtractStockProductAsync(StockProduct stockProduct)
+        {
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
 
-        //var productToUpdate = new Product
-        //{
-        //    Product_Id = product.Product_Id,
-        //    Id_Store = product.Id_Store,
-        //    Names = product.Names,
-        //    Description = product.Description,
-        //    Stock = product.Stock,
-        //    Price = product.Price,
-        //    AdmissionDate = DateTime.Now,
-        //    DepartureDate = null,
-        //    State = product.State
-        //};
+            var productStockUpdate = await GetProductByIdAsync(stockProduct.Product_Id);           
+
+            if (stockProduct.Stock > productStockUpdate.Stock)
+            {
+                throw new InvalidOperationException("No hay suficiente stock disponible.");
+            }
+           
+            productStockUpdate.Stock -= stockProduct.Stock;
+
+            string sqlQuery = $"UPDATE {_tableName} SET Stock = @Stock, DepartureDate = @DepartureDate WHERE Product_Id = @Product_Id";
+
+            var result = await connection.ExecuteAsync(sqlQuery, productStockUpdate);
+
+            connection.Close();
+            return _mapper.Map<Product>(productStockUpdate);
+        }
+
+        public async Task<Product> UpdateStateAsync(UpdateState updateState)
+        {
+            var connection = await _dbConnectionBuilder.CreateConnectionAsync();
+            var stateToUpdate = await GetProductByIdAsync(updateState.Product_Id);
+
+            switch (updateState.State)
+            {
+                case true:
+                    stateToUpdate.State = true;
+                    break;
+                case false:
+                    stateToUpdate.State = false;
+                    break;
+
+                default:
+                    throw new InvalidOperationException("the status is not valid.");
+
+            }
+
+            string sqlQuery = $"UPDATE {_tableName} SET State = @State WHERE Product_Id = @Product_Id";
+            var result = await connection.ExecuteAsync(sqlQuery, stateToUpdate);
+            connection.Close();
+            return _mapper.Map<Product>(stateToUpdate);
+        }       
     }
 }

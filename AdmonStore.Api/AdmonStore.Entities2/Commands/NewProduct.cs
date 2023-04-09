@@ -23,6 +23,6 @@ namespace AdmonStore.Entities2.Commands
         public DateTime AdmissionDate { get; set; }        
         public DateTime? DepartureDate { get; set; }
         [Required(ErrorMessage = "State is required")]
-        public string State { get; set; }
+        public bool State { get; set; }
     }
 }

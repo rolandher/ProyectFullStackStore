@@ -70,5 +70,29 @@ namespace StoryRepositoryTest.AdmonRepositoryTest
             Assert.NotNull(result);
             Assert.Equal(locationCreated, result);
         }
+
+        [Fact]
+        public async Task GetLocationByIdAsync()
+        {
+            //Arrange
+            var location = new Location
+            {
+                Id_Store = 1,
+                Names = "Bodega",
+                Description = "Lacteos",
+                Location_Type = "Bodega",
+            };
+            var locationId = new Location();
+            _mockLocationRepository.Setup(x => x.GetLocationByIdAsync(1)).ReturnsAsync(locationId);
+
+            //Act
+            var result = await _mockLocationRepository.Object.GetLocationByIdAsync(1);
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.Equal(locationId, result);
+        }
+
+
     }
 }

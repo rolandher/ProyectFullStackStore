@@ -32,9 +32,19 @@ namespace AdmonStore.Domain2.UseCases
             return await _productRepository.GetProductByIdAsync(id);
         }
 
-        public async Task<Product> UpdateStockProductAsync(Product product)
+        public async Task<Product> AgregateStockProductAsync(StockProduct stockProduct)
         {
-            return await _productRepository.UpdateStockProductAsync(product);
+            return await _productRepository.AgregateStockProductAsync(stockProduct);
+        }
+
+        public async Task<Product> SubtractStockProductAsync(StockProduct stockProduct)
+        {
+            return await _productRepository.SubtractStockProductAsync(stockProduct);
+        }
+
+        public async Task<Product> UpdateStateAsync(UpdateState updateState)
+        {
+            return await _productRepository.UpdateStateAsync(updateState);
         }
         
     }

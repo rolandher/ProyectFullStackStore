@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace AdmonStore.Entities2.Commands
 {
-    public class StockProduct
+    public class UpdateState
     {
         [Required(ErrorMessage = "Id is required")]
         public int Product_Id { get; set; }
-        [Required(ErrorMessage = "Stock is required")]
-        public int Stock { get; set; }        
+
+        [Required(ErrorMessage = "State is required")]
+        public bool State { get; set; }        
+                
     }
 }
