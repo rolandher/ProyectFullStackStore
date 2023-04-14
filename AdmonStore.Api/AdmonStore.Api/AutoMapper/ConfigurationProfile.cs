@@ -11,6 +11,7 @@ namespace AdmonStore.Api.AutoMapper
         {
             CreateMap<NewUser, User>().ReverseMap();
             CreateMap<UserEntity, User>().ReverseMap();
+            CreateMap<NewUser, UserEntity>().ReverseMap();
         }
             
     }
