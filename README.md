@@ -3,7 +3,7 @@
 An application of my store is created, where the user entity exists, which are the employees to register/work for my store. Followed by this are the entities store, location and product. Where the distribution of the products to enter and their respective distribution between the store and the location is carried out.
 
 Diagrama UML:
-![image](https://user-images.githubusercontent.com/98430956/232351862-2500a1a1-2948-4c9c-88b3-b93bfcee4269.png)
+![image](https://user-images.githubusercontent.com/98430956/232353125-06536ed3-659b-4b58-a4c2-415a0566a577.png)
 
 Script SQL:
 
