@@ -56,7 +56,8 @@ Endpoint User:
 
 Endpoints Store,Location and Product:
 
-![image](https://user-images.githubusercontent.com/98430956/232353029-a7d73b85-3503-4533-ad35-a580e742b74e.png)
+![image](https://user-images.githubusercontent.com/98430956/232353531-4943a198-cadd-40b4-9b0f-835fc49b13a8.png)
+
 
 
 
